@@ -73,6 +73,10 @@ summary(df2$V2)
 for(data in month.name) 
   print(data)
 
+for(data in month.name) 
+  cat(data) #자동 개행처리 안함
+
+#print는 데이터셋을 잘 보여줌
 sum <- 0
 for(i in 5:15){
   if(i%%10==0){
@@ -82,11 +86,20 @@ for(i in 5:15){
   print(paste(i,":",sum))
 }
 
+#cat은 메세지 출력용
+sum <- 0
+for(i in 5:15){
+  if(i%%10==0){
+    break
+  }
+  sum <- sum + i
+  cat(i,":",sum,"\n")
+}
 
 sum <-0
 for(i in 5:15){
   if(i%%10==0){
-    next;  #continue
+    next;  #JAVA의 continue와 동일
   }
   sum <- sum + i
   print(paste(i,":",sum))
@@ -99,10 +112,9 @@ while(sumNumber <= 20) {
   cat(sumNumber,"\n")
 } 
 
-repeat {
+repeat {      #무한루프
   cat("ㅋㅋㅋ\n")
 }
-
 
 sumNumber <- 0
 repeat { 
@@ -113,6 +125,127 @@ repeat {
     break;
 }
 
+#제어문
+#if else
+randomNum <-sample(1:10,1)
+if(randomNum>5){
+  cat(randomNum,":5보다 크군요","\n")
+}else{
+  cat(randomNum,":5보다 작거나 같군요","\n")
+}
+
+if(randomNum%%2 == 1){
+  cat(randomNum,";홀수\n")
+}else{
+  cat(randomNum,";짝수","\n")
+}
+
+
+if(randomNum%%2 == 1){
+  cat(randomNum,";홀수","\n")
+}else{
+  cat(randomNum,";짝수","\n")
+}
+
+score <- sample(0:100, 1)  # 0~100 숫자 한 개를 무작위로 뽑아서
+if (score >=90){
+  cat(score,"는 A등급입니다","\n")
+}else if (score >=80){
+  cat(score,"는 B등급입니다","\n")
+}else if (score >=70){
+  cat(score,"는 C등급입니다","\n")
+}else if (score >=60){
+  cat(score,"는 D등급입니다","\n")
+}else {
+  cat(score,"는 F등급입니다","\n")
+}
+
+#for문
+#for 실습
+for(data in month.name) 
+  print(data)
+for(data in month.name)print(data);print("ㅋㅋ")
+for(data in month.name){print(data);print("ㅋㅋ")}
+
+for(n in 1:5)
+  cat("hello?","\n")
+
+for(i in 1:5){
+  for(j in 1:5){
+    cat("i=",i,"j=",j,"\n")
+  }
+}
+# 구구단
+for(dan in 1:9){
+  for(num in 1:9){
+    cat(dan,"x",num,"=",dan*num,"\t") # \n : 개행문자, \t : 탭문자
+  }
+  cat("\n")
+}
+
+
+bb <- F  #JAVA의 label 기능은 없다. 변수지정 필요
+for(i in 1:9){
+  for(j in 1:9){
+    if(i*j>30){
+      bb<-T
+      break
+    } 
+    cat(i,"*",j,"=",i*j,"\t")
+  }
+  cat("\n")
+  if(bb) #bb가 TRUE이면
+    break
+}
+
+#while문
+i<-1
+while(i <= 10){
+  cat(i,"\n")
+  i <- i+1
+}
+cat("종료 후 :",i,"\n")
+
+i<-1
+while (i<=10) {
+  cat(i,"\n")
+}
+
+i<-1
+while (i<=10) {
+  cat(i,"\n")
+  i<-i+2
+}
+
+i<-1
+while (i<=10) {
+  cat(i,"\n")
+  i<-i+1
+}
+
+#switch 문을 대신하는 함수
+month <- sample(1:12,1)
+month <- paste(month,"월",sep="") # "3월"  "3 월"
+result <- switch(EXPR=month,
+                 "12월"=,"1월"=,"2월"="겨울",
+                 "3월"=,"4월"=,"5월"="봄",
+                 "6월"=,"7월"=,"8월"="여름",
+                 "가을")
+cat(month,"은 ",result,"입니다\n",sep="")
+
+num <- sample(1:10,1)
+num
+switch(EXPR = num,"A","B","C","D")
+
+for(num in 1:10){
+  cat(num,":",switch(EXPR = num,"A","B","C","D"),"\n")
+}
+
+for(num in 1:10){
+  num <- as.character(num) # paste0(num,"")
+  cat(num,":",switch(EXPR = num,
+                     "7"="A","8"="B","9"="C","10"="D","ㅋ"),"\n")
+}
 
 # 함수 정의와 활용
 
@@ -155,4 +288,70 @@ func4(x=1,y=2,z=3)
 func4(y=11,z=22,x=33)
 func4(z=1000)  
 
+# 쉬트에 있는 함수 코드
+f1 <- function() print("TEST") #한줄짜리는 {} 불필요
+f1()
+r <- f1()
+r
 
+f2 <- function(num) {print("TEST"); print(num) }
+f2(100)
+f2()
+
+f3<- function (p="R") print(p)
+f3()
+f3(p="PYTHON")
+f3("java")
+
+f4<- function (p1="ㅋㅋㅋ",p2) for(i in 1:p2) print(p1)
+f4(p1="abc", p2=3)
+f4("abc", 3) 
+f4(5) 
+f4(p2=5) 
+
+f5<- function(...) { print("TEST"); data <- c(...); print(length(data))}
+f5(10, 20, 30)
+f5("abc", T, 10, 20)
+
+f6 <-function(...) {
+  print("수행시작")
+  data<-c(...)
+  for(item in data) {
+    print(item)
+  }
+  return(length(data))
+}
+f6()
+f6(10)
+f6(10, 20, 30)
+f6(10, 'abc', T, F)
+
+
+f7 <-function(...){
+  data <- c(...)  #벡터는 원소의 형이 강제 일치된다.
+  sum <- 0
+  for(item in data){
+    if(is.numeric(item))
+      sum <- sum+i
+    else
+      print(item)
+  }
+  return(sum)
+}
+f7(10,20,30)
+f7(10,20,'test', 30,40)
+
+f8<- function(...) {
+  data <- list(...)  #list는 원소의 형이 자유롭다.
+  sum <- 0;
+  for(item in data) {
+    if(is.numeric(item))
+      sum <- sum + item
+    else
+      print(item)
+  }
+  return(sum)
+}
+
+f8(10,20,30)
+f8(10,20,"test", 30,40)
