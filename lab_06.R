@@ -36,6 +36,7 @@ exam2 <-function(x){
 # 5, 30 이 전달되면 ---> 25 리턴
 # 6, 3 이 전달되면  ---> 3 리턴
 # 결과 출력은 함수를 호출한 다음 리턴값을 받아서 호출한 쪽에서 한다.
+#방법1
 exam3 <- function(x,y){
   if(x>y)
     return(x-y)
@@ -43,6 +44,15 @@ exam3 <- function(x,y){
     return(y-x)
   else if(x==y)
     return(0)
+}
+#방법2
+exam3 <- function(x,y){
+  result <- 0
+  if(x>y)
+    result <- x-y
+  else if(x<y)
+    result <- y-x
+  return(result)
 }
 exam3(10, 20); exam3(20,5);exam3(5,30);exam3(6,3)
  
@@ -80,8 +90,9 @@ exam4(1, "%/%", 0)
 exam4(0, "+", 1)
 exam4(1, ".", 0)
 
-
-
+0/1 # 0
+1/0 # Inf
+0/0 # NaN
  
 # [ 문제5 ]
 # 다음 사양의 함수 exam5( )을 생성한다.
@@ -102,7 +113,13 @@ exam5 <- function(x, y="#"){
     return()
   }
 }
-exam5(x=1, y="*")
+#수정
+exam5 <- function(x, y="#"){
+  if(is.numeric(x) & x>0)
+      for(i in 1:x) cat(y)
+  return()
+}
+exam5(x="test", y="*");exam5(2);exam5(x=-1)
 
              
 # [ 문제6 ]
@@ -121,11 +138,12 @@ exam5(x=1, y="*")
 exam6 <- function(vec){
   level <-NULL
   for(x in vec){
-    if(is.na(x)) print("NA는 처리불가")
+    if(is.na(x)) 
+      print("NA는 처리불가")
     else{
-      if(x>=85 & x<=100)
+      if(x>=85)
         level <- "상"
-      else if(x>=70 & x<85)
+      else if(x>=70)
         level <- "중"
       else
         level <- "하"
