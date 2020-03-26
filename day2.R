@@ -3,6 +3,9 @@ x1 <-matrix(1:8, nrow = 2)
 x1
 x1<-x1*3
 x1
+x1 <- matrix(1:8)
+x1 <- matrix(1:8, ncol = 2)
+x1
 
 sum(x1); min(x1);max(x1);mean(x1)
 
@@ -275,7 +278,9 @@ subset(emp, emp$sal>= 2000,
 emp[emp$sal>=2000,c("ename","sal")]
 
 # select ename,sal from emp where sal between 2000 and 3000
-subset(emp, select=c("ename","sal"), subset=(sal>=2000 & sal<=3000))
+subset(emp, select=c("ename","sal"), subset= (sal>=2000 & sal<=3000) )
+subset(emp, select=c("ename","sal"), subset= sal>=2000 & sal<=3000 )
+subset(emp, sal>=2000 & sal<=3000, c("ename","sal"))
 emp[emp$sal>=2000 & emp$sal <=3000, c("ename","sal")]
 
 y <- c(0,25,50,75,100)

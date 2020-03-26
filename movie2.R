@@ -10,8 +10,7 @@
 
 # 이번에는 평점과 리뷰글을 20페이지까지 스크래핑하여 데이터프레임으로 만들어 "daummovie2.csv" 로 저장한다.
 # R 코드는 movie2.R 로 생성하여 csv 파일과 함께 제출하세요.
-
-
+install.packages("rvest");library("rvest")
 #작은 아씨들
 url <- "https://movie.daum.net/moviedb/grade?movieId=127122&type=netizen&page="
 movie <- NULL
