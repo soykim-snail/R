@@ -146,15 +146,22 @@ title2[1:10]
 res = GET('https://news.naver.com/main/list.nhn?mode=LSD&mid=sec&sid1=001')
 htxt = read_html(res)
 link = html_nodes(htxt, 'div.list_body a'); length(link)
-article.href = unique(html_attr(link, 'href'))
+article.href = unique(html_attr(link, 'href')) # 중복제거
 article.href
 
 # 이미지, 첨부파일 다운 받기 
 # pdf
+library(httr)
 res = GET('http://cran.r-project.org/web/packages/httr/httr.pdf')
-writeBin(content(res, 'raw'), 'c:/Temp/httr.pdf')
+writeBin(content(res, 'raw'), 'c:/Temp/httr.pdf') 
+# content()
+# 서버에서 받아온 header와 body에서 body 읽어옴
+# 옵션 'raw'는 바이너리
+# writeBin() : 바이너리로 저장
+
 
 # jpg
+library(rvest)
 h = read_html('http://unico2013.dothome.co.kr/productlog.html')
 imgs = html_nodes(h, 'img')
 img.src = html_attr(imgs, 'src')
