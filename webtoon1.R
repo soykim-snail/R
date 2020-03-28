@@ -41,7 +41,7 @@ for(j in 1:5){
     Sys.sleep(1)
   }
 }
-write(review, "data/webtoon1.txt", append = T, sep = "\n")
+write.csv(review, "data/webtoon1.csv")
 
 
 
