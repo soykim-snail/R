@@ -127,7 +127,7 @@ library(httr)
 http.standard <- GET('http://www.w3.org/Protocols/rfc2616/rfc2616.html') # GET 방식 통신을 위한 기본정보를 담고 있는 객체 생성
 library(rvest)
 title2 = html_nodes(read_html(http.standard), 'div.toc h2') # url을 그대로 넣어도 동일
-# title2 = html_nodes('http://www.w3.org/Protocols/rfc2616/rfc2616.html', 'div.toc h2')
+# title2 = html_nodes(read_html('http://www.w3.org/Protocols/rfc2616/rfc2616.html'), 'div.toc h2')
 title2 = html_text(title2)
 title2
 
