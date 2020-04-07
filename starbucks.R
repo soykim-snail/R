@@ -16,9 +16,10 @@ Sys.sleep(2)
 sel_seoul <- remDr$findElement(using = 'css', '#container > div > form > fieldset > div > section > article.find_store_cont > article > article:nth-child(4) > div.loca_step1 > div.loca_step1_cont > ul > li:nth-child(1) > a')
 Sys.sleep(1)
 sel_seoul$clickElement()
+Sys.sleep(5)
 sel_full <- remDr$findElement(using = 'css', '#mCSB_2_container > ul > li:nth-child(1) > a')
 sel_full$clickElement()
-Sys.sleep(2)
+Sys.sleep(5)
 # 전체 매장 갯수 추출
 limit <- remDr$findElement(using = 'css', '#container > div > form > fieldset > div > section > article.find_store_cont > article > article:nth-child(4) > div.loca_step3 > div.result_num_wrap > span')$getElementText()
 limit <- as.numeric(limit)
@@ -34,26 +35,29 @@ for(index in 1:limit){
   index
   css <- paste0('#mCSB_3_container > ul > li:nth-child(', index,')')
   dom <- remDr$findElement(using = 'css', css)
-  shopname <- c(shopname, dom$getElementAttribute('data-name'))
-  lat <- c(lat, dom$getElementAttribute('data-lat'))
-  lng <- c(lng, dom$getElementAttribute('data-long'))
+  shopname <- c(shopname, unlist(dom$getElementAttribute('data-name')))
+  lat <- c(lat, unlist(dom$getElementAttribute('data-lat')))
+  lng <- c(lng, unlist(dom$getElementAttribute('data-long')))
   css_sub <- paste0('#mCSB_3_container > ul > li:nth-child(', index,') > p')
   dom_sub <- remDr$findElement(using = 'css', css_sub)
   info <- dom_sub$getElementText()
   addr <- c(addr, unlist(strsplit(unlist(info), split = '\n'))[1])
   telephone <- c(telephone, unlist(strsplit(unlist(info), split = '\n'))[2])
   
-  #3개 지점마다 스크롤 발생
-  if(index %% 3 == 0 && index != limit)
-    remDr$executeScript(
-      "var dom = document.querySelectorAll('#mCSB_3_container > ul > li')[arguments[0]];
-      dom.scrollIntoView();", list(index)
-    )
-  # executeScript 함수 부분 분석해서 재작성 하기
-  
+  # 스크롤 발생
+  ### 방법1 : 3개 지점마다 스크롤 발생
+  # if(index %% 3 == 0 && index != limit)
+    # remDr$executeScript(
+    #   "var dom = document.querySelectorAll('#mCSB_3_container > ul > li')[arguments[0]];
+    #   dom.scrollIntoView();", list(index)
+    # )
+  ### 방법2 : 2개 지점마다 스크롤 발생 --- 중간중간 NA 문제 발생 방지를 위해
+  if(index %% 2 == 0 && index != limit)
+    remDr$executeScript('arguments[0].scrollIntoView()', list(dom))
+    
 }
 
-write.csv(cbind(shopname, lat, lng, addr, telephone), file = "starbucks.csv")
+write.csv(data.frame(shopname, lat, lng, addr, telephone), file = "starbucks.csv")
 
 
 

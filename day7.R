@@ -136,7 +136,7 @@ repeat {
   remDr$executeScript("scrollTo(0, 0)", args = list(webElem))
   nextPageLink<-remDr$findElements(using='css selector',nextPageCSS) 
   remDr$executeScript("arguments[0].click();",nextPageLink);
-  #sapply(nextPageLink,function(x){x$clickElement()})  #에러나는 경우 있음. execureScript로 처리할 것.
+  #sapply(nextPageLink,function(x){x$clickElement()})  #에러나는 경우 있음. executeScript로 처리할 것.
   Sys.sleep(5)
   print(page)
 }
