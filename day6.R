@@ -8,6 +8,7 @@ gsub("A", "", word)
 gsub("a", "", word) 
 gsub("Aa", "", word)
 
+
 #정규표현
 
 # quantifiers
@@ -33,5 +34,3 @@ gsub("\\D", "", word) # non-digit (숫자가 아닌)
 gsub("[[:digit:]]", "", word) 
 gsub("[^[:alnum:]]", "", word) 
 gsub("[[:space:]]", "", word) # 스페이스, 탭, 뉴라인, 첫째열로....
-
-
