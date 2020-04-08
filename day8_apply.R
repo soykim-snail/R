@@ -57,4 +57,4 @@ sapply(df, myf)
 rr2 <- sapply(df, myf)
 str(rr2)
 rr2[1,1]
-rr2[1,"w"]
+rr2[1,"w"] 
