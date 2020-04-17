@@ -10,7 +10,7 @@
 
 install.packages("RSelenium")
 library(RSelenium)
-remDr <- remoteDriver(remoteServerAddr="localhost", port=4445, browserName="chrome")
+remDr <- remoteDriver(remoteServerAddr="localhost", post= 4445, browserName="chrome")
 remDr$open()
 
 remDr$navigate("http://www.google.com")

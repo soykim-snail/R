@@ -96,6 +96,7 @@ df
 # http://openapi.seoul.go.kr:8088/796143536a756e69313134667752417a/xml/LampScpgmtb/1/100/
 
 library(XML)
+library(xml2)
 key = '796143536a756e69313134667752417a'
 contentType = 'xml'
 startIndex = '1'
@@ -103,7 +104,7 @@ endIndex = '200'
 url = paste0('http://openapi.seoul.go.kr:8088/',key,'/',contentType,'/LampScpgmtb/',startIndex,'/',endIndex,'/')
 
 con <- url(url, "rb") 
-imsi <- read_html(con)
+imsi <- read_html(con) # {xml2}
 t <- htmlParse(imsi, encoding="UTF-8")
 upNm<- xpathSApply(t,"//row/up_nm", xmlValue) 
 pgmNm<- xpathSApply(t,"//row/pgm_nm", xmlValue)
