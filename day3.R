@@ -235,7 +235,9 @@ cat(month,"은 ",result,"입니다\n",sep="")
 
 num <- sample(1:10,1)
 num
-switch(EXPR = num,"A","B","C","D")
+switch(EXPR = num, "A","B","C","D") # 해당하는 parameter 없으면 리턴없음
+switch(EXPR = 3, "A","B","C","D") # 숫자로 인덱싱한 paramter 리턴함
+
 
 for(num in 1:10){
   cat(num,":",switch(EXPR = num,"A","B","C","D"),"\n")
