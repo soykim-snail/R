@@ -15,6 +15,7 @@ install.packages("rgeos")
 library(rgeos) 
 library(Kormaps)
 library(htmlwidgets)
+library(leaflet)
 
 read.csv('data/one.csv') %>% 
   rename("name"="동") %>% 
