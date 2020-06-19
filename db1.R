@@ -27,6 +27,3 @@ ggsave("db1.jpg")
 ggplot(iris_j, aes(x = PLENGTH, y = PWIDTH)) +
   geom_point(aes(color = SPECIES))
 ggsave("db2.jpg")
-
-ggplot(iris_j)+
-  geom_point(aes(x = PLENGTH, y = PWIDTH, color = SPECIES))

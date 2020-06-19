@@ -13,7 +13,7 @@ readLines("yes24.txt") %>%
   extractNoun() %>% 
   unlist %>% 
   Filter(function(x) {nchar(x)>=2}, .) %>% 
-  gsub("\\s ", "", .) %>% 
+  gsub("\\s", "", .) %>% 
   table(exclude = "") %>% 
   sort(decreasing = T) %>% 
   data.frame() -> result

@@ -25,7 +25,6 @@ dev.off()
 # 그래프 메인 제목 : "파이그래프 실습"
 # clicklog2.png 에 저장한다.
 
-# 방법1 : 24시간 전체에 대해서 (라벨이 겹치는 문제)
 png('clicklog2.png', 400, 400 )
 p_data <- sapply(data$V1, function(x) as.numeric(substr(x, 9, 10)))
 pie_data <- summary(factor(p_data, levels=0:23))
@@ -34,12 +33,4 @@ pie(pie_data, main = '파이그래프 실습',
     labels = p_lab, col = rainbow(length(pie_data)))
 dev.off()
 
-# 방법2 : 관측된 시간에 대해서만 (라벨 추출이 번거로움)
-png('clicklog3.png', 400, 400 )
-p_data <- sapply(data$V1, function(x) as.numeric(substr(x, 9, 10)))
-pie_data <- summary(factor(p_data))
-p_lab <- paste0(names(pie_data), ' ~ ', as.numeric(names(pie_data))+1)
-pie(pie_data, main = '파이그래프 실습', 
-    labels = p_lab, col = rainbow(length(pie_data)))
-dev.off()
-
+  

@@ -26,7 +26,8 @@ data <- read_html(url)
 score <- html_nodes(data, ".emph_grade")
 score <- html_text(score)
 
+# review <- html_nodes(data, ".desc_review")
 review <- html_nodes(data, ".desc_review")
 review <- html_text(review, trim = T)
 
-write.csv(data.frame(score, review), "data/daummovie1_little.csv")
+write.csv(data.frame(score, review), "data/daummovie2.csv")

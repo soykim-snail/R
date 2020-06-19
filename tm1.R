@@ -4,9 +4,9 @@
 # hotel_top_word.csv 로 저장한다. 작성된 R 소스는 tm1.R 저장한 후에 tm1.R 과 hotel_top_word.csv 을
 # 제출한다.
 
-library(KoNLP)
 library(dplyr)
-readLines("hotel.txt") %>% 
+word_data <- readLines("hotel.txt")
+word_data %>% 
   gsub("[^가-힣]", " ", .) %>% 
   extractNoun %>% 
   unlist %>% 

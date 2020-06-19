@@ -32,7 +32,10 @@ L5 <- list(
   writing = list(90,85),
   reading = list(85,80)
 )
-mean(unlist(L5)) #안의 리스트까지 풀어준다.
+m_math <- mean(unlist(L5$math))
+m_writing <- mean(unlist(L5$writing))
+m_reading <- mean(unlist(L5$reading))
+mean(m_math, m_writing, m_reading)
  
 # [문제6] 힌트 : 연산자를 잘 활용해 봅시다요…
 # 1. time 이라는 변수에 32150 이라는 값(초)을 초기화 한다.   

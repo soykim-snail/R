@@ -17,8 +17,8 @@ library(ggplot2)
 mpg <- as.data.frame(ggplot2::mpg)
 str(mpg)
 dim(mpg)
-mpg %>% head(10)
-mpg %>% tail(10)
+head(10)
+tail(10)
 View(mpg)
 summary(mpg)
 mpg %>% group_by(manufacturer) %>% tally
@@ -44,34 +44,31 @@ midwest %>% rename(total=poptotal, asian=popasian) %>%
   #3-3
   mutate(ratio_asian=asian/total) %>% 
   #3-4
-  mutate(asess= ifelse(ratio_asian > mean(ratio_asian), "large","small")) %>% 
-  head
+  mutate(asess= ifelse(ratio_asian > mean(ratio_asian), "large","small")) -> midwest_after
+head(midwest_after)
 
 # 4. 
 # 4-1
-mpg %>% group_by(displ >=4 ) %>% summarise(mean(hwy))
-# plot(mpg$displ, mpg$hwy)
+mpg %>% group_by(displ <= 4) %>% summarise(mean(hwy))
+plot(mpg$displ, mpg$hwy)
 # 4-2
 mpg %>% group_by(manufacturer) %>% summarise(mean(cty)) %>% 
   filter(manufacturer %in% c('audi', 'toyota'))
 # 4-3
-# 세 회사의 평균
 mpg %>% group_by(manufacturer) %>% summarise(m=mean(hwy)) %>% 
-  filter(manufacturer %in% c('chevrolet', 'ford', 'honda')) %>%  # subset으로 바꾸어도 동일
+  filter(manufacturer %in% c('chevrolet', 'ford', 'honda')) %>% 
   summarise(mean(m))
-# 차들의 평균
-mpg %>% filter(manufacturer %in% c('chevrolet', 'ford', 'honda')) %>% 
-  summarise(mean(hwy))
 
 # 5.
 # 5-1
 mpg2 <- mpg %>% select(class, cty)
 head(mpg2); str(mpg2)
 # 5-2
-# plot(factor(mpg2$class), mpg2$cty, las=2)
+plot(factor(mpg2$class), mpg2$cty, las=2)
 mpg2 %>% filter(class %in% c('suv', 'compact')) %>% 
   group_by(class) %>% summarise(m=mean(cty))
 
 # 6.
-mpg %>% filter(manufacturer == 'audi') %>%
-  arrange(desc(hwy)) %>% head(5)
+mpg3 <- mpg %>% filter(manufacturer == 'audi')
+plot(factor(mpg3$model), mpg3$hwy, las=2)
+mpg3 %>% arrange(desc(hwy)) %>% head(5)

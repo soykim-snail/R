@@ -77,11 +77,6 @@ cat(score, "점은", level, "입니다.")
 
 #방법2
 alpha <- NULL
-for(i in 1:length(LETTERS))
+for(i in 1:26)
   alpha <- append(alpha,paste(LETTERS[i], letters[i], sep=""))
-print(alpha)
-
-#방법3
-for(i in 1:length(LETTERS))
-  alpha[i] <- paste(LETTERS[i], letters[i], sep="")
 print(alpha)

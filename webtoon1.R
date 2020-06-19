@@ -4,13 +4,6 @@
 # 코드를 작성한다. 
 # 제출 파일명 : webtoon1.txt, webtoon1.R
 
-# Selenium 서버 기동
-# cmd 창에서 Selenium 서버 기동 (cmd 창을 끄지 않도록 주의)
-# C:\soykim\R-study\selenium-server-standalone-master\bin>
-# java -jar selenium-server-standalone.jar -port 4445
-
-install.packages("RSelenium")
-library(RSelenium)
 rd <- remoteDriver(port=4445, browserName="chrome")
 
 rd$open()
@@ -41,7 +34,7 @@ for(j in 1:5){
     Sys.sleep(1)
   }
 }
-write.csv(review, "data/webtoon1.csv")
+write(review, "data/webtoon1.txt", append = T, sep = "\n")
 
 
 
